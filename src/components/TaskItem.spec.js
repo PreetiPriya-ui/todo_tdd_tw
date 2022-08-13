@@ -3,8 +3,11 @@ import userEvent from "@testing-library/user-event";
 import Main from "./Main";
 
 describe("delete operation",()=>{
+    
     it("delete particular task",()=>{
+        
         render(<Main />)
+               
         const addTask = screen.getByTestId('add-task-button');
 
         const inputField = screen.getByTestId('input-field-id');
@@ -26,7 +29,9 @@ describe("delete operation",()=>{
 describe("edit operation",()=>{
 
     it("Edit task name",()=>{
+        
         render(<Main/>)
+               
         const addTask = screen.getByTestId('add-task-button');
 
         const inputField = screen.getByTestId('input-field-id');
@@ -50,7 +55,9 @@ describe("edit operation",()=>{
 describe("save new value",()=>{
 
     it("saving new value",()=>{
+        
         render(<Main />)
+               
         const editButton = screen.getByTestId("edit-button");
 
         userEvent.click(editButton);
@@ -58,15 +65,13 @@ describe("save new value",()=>{
         const editableValue=screen.getByTestId('edit-task');
 
         //console.log(editableValue.value);
+        
         editableValue.textContent="play cricket";
-        //console.log(screen.getByTestId('edit-task').value);
-        //console.log(editableValue.value);
+        
         const saveButton = screen.getByTestId("save-button");
+        
         userEvent.click(saveButton);
-        
-        //console.log(screen.getByText("play cricket"));
-        //expect(Item.value).toEqual("play cricket");
-        
+                
         expect(editableValue.textContent).toEqual("play cricket");
     })
 
@@ -74,7 +79,9 @@ describe("save new value",()=>{
 
 
 describe("toggeling of task",()=>{
+    
     it("set task as completed",()=>{
+        
         render(<Main />)
 
         const addTask = screen.getByTestId('add-task-button');
@@ -95,10 +102,15 @@ describe("toggeling of task",()=>{
         
     })
     it("set task as not completed",()=>{
+        
         render(<Main />);
+               
         const toggleTask=screen.getByText("yoga time");
+        
         const toggleButton = screen.getByTestId(1);
+        
         userEvent.click(toggleButton);
+        
         expect(toggleTask).isUnChecked;
     })
 })
